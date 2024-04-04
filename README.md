@@ -1,6 +1,6 @@
 Aplikacja do tworzenia formularzy rekrutacyjnych i wspierająca onboarding
 
-## Getting Started
+### Aby zacząć
 
 ```bash
 yarn install
