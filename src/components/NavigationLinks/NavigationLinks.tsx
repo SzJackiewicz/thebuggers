@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 const NavigationLinks = () => {
   const pathname = usePathname()
   const pathnameMain = pathname.split('/')[1] || ''
-  console.log(pathnameMain)
   return (
     <ul
       role='list'
