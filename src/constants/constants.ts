@@ -3,4 +3,5 @@ export const userGroupName = {
   Manager: 'Manager',
   HR: 'HR',
   Employee: 'Employee',
-};
+}
+
