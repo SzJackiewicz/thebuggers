@@ -1,10 +1,12 @@
 'use client'
 
 import useAuth from '@/hooks/useAuth'
+import useCookie from '@/hooks/useCookie'
+import { useStore } from '@/hooks/useStore'
 import { classNames } from '@/utils/styleUtils'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 const userNavigation = [
   { name: 'Your profile', href: '#' },
@@ -12,9 +14,18 @@ const userNavigation = [
 ]
 
 const ProfileDropdown = () => {
-  const { userData } = useAuth()
+  const [userName, setUserName] = useState<string>('')
+  const { userData, loginSwitch } = useStore()
+  const { get } = useCookie()
 
-  console.log(userData)
+  useEffect(() => {
+    setUserName(get('userData')?.fullName)
+  }, [loginSwitch])
+
+  if (!userName) {
+    return null
+  }
+
   return (
     <Menu
       as='div'
@@ -32,7 +43,7 @@ const ProfileDropdown = () => {
             className='ml-4 text-sm font-semibold leading-6 text-gray-900'
             aria-hidden='true'
           >
-            Tom Cook
+            {userName}
           </span>
           <ChevronDownIcon
             className='ml-2 h-5 w-5 text-gray-400'

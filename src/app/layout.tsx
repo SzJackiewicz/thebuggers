@@ -6,6 +6,8 @@ import './globals.css'
 import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '@/components'
 import { getNavigationData } from '@/lib/api/getNavigationData'
 import { userGroupName } from '@/constants/constants'
+import SwitchUser from '@/components/SwitchUser/SwitchUser'
+import { StoreProvider } from '@/providers/Store'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +22,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const menu = await getNavigationData(userGroupName.HR)
-  console.log(menu)
 
   return (
     <html
@@ -28,7 +29,7 @@ export default async function RootLayout({
       className='h-full bg-white'
     >
       <body className={`${inter.className} h-full`}>
-        <>
+        <StoreProvider>
           <div>
             <SidebarMobile />
             <Sidebar />
@@ -58,6 +59,11 @@ export default async function RootLayout({
                       aria-hidden='true'
                     />
                     <ProfileDropdown />
+                    <div
+                      className='hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10'
+                      aria-hidden='true'
+                    />
+                    <SwitchUser />
                   </div>
                 </div>
               </div>
@@ -66,7 +72,7 @@ export default async function RootLayout({
               </main>
             </div>
           </div>
-        </>
+        </StoreProvider>
       </body>
     </html>
   )
