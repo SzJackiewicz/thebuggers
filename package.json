@@ -8,9 +8,14 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "@mdx-js/loader": "^3.0.1",
+    "@prisma/client": "^5.10.2",
+    "prisma": "^5.10.2",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.1.4",
     "@types/mdx": "^2.0.12",
