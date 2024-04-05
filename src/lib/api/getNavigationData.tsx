@@ -1,10 +1,13 @@
 import { performRequest, PerformRequestParams } from '@/lib/datocms'
+import * as HeroIcons from '@heroicons/react/24/outline';
 
 const PAGE_CONTENT_QUERY = `
 query GetMenuByUser {
   allMenus {
     menuitems {
       menuname
+      slug
+      icon
     }
     user {
       username
@@ -12,11 +15,23 @@ query GetMenuByUser {
   }
 }
   `
+
+export const iconMap = {
+  CalendarIcon: HeroIcons.CalendarIcon,
+  ChartPieIcon: HeroIcons.ChartPieIcon,
+  DocumentDuplicateIcon: HeroIcons.DocumentDuplicateIcon,
+  FolderIcon: HeroIcons.FolderIcon,
+  HomeIcon: HeroIcons.HomeIcon,
+  UsersIcon: HeroIcons.UsersIcon
+};
+
 export interface MenuItem {
   menuname: string
+  slug: string
+  icon: keyof typeof HeroIcons;
 }
-interface Menu {
-  menuitems: {menuname: string}
+export interface Menu {
+  menuitems: MenuItem[]
   user: {username: string}
 }
 
@@ -40,7 +55,7 @@ export async function getNavigationData(username: string = ""): Promise<MenuItem
 
     const allMenu = data.allMenus
 
-    return allMenu.filter(item => item.user.username === username).map(item => item.menuitems);
+    return allMenu.filter(item => item.user.username === username).flatMap(item => item.menuitems)
   } catch (error) {
     console.error('Error fetching navigation data:', error)
     return []
