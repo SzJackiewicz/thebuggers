@@ -15,6 +15,7 @@ model User {
   email   String   @db.VarChar(256)
   link    String   @db.VarChar(256)
   about   String   @db.VarChar(256)
+  testId  String   @db.VarChar(256)
   answers Answer[]
 }
 

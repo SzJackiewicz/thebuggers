@@ -22,6 +22,7 @@ export async function createUser(data) {
         email: data.email,
         link: data.link,
         about: data.about,
+        testId: data.testId,
         answers: {
           create: answers,
         },

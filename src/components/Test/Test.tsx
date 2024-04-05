@@ -3,7 +3,7 @@ import { Suspense, useState } from 'react'
 import Progress from './components/Progress'
 import CandidateForm from './components/CandidateForm'
 import TestInfoSection from './components/TestInfoSection'
-import { Question, TestData, getTestById } from '@/lib/api/getTestById'
+import { TestData } from '@/lib/api/getTestById'
 import TestForm from './components/TestForm'
 import { mapQuestions } from './helpers/mapQuestionsAnswers'
 import { createUser } from '@/server/createUser'
@@ -29,7 +29,6 @@ export default function Test({ data, id }: TestProps) {
   })
   const [step, setStep] = useState<number>(0)
   const handleOnSubmit = async () => {
-
     await createUser({
       ...candidateInfo,
       answers: testValues,
