@@ -14,7 +14,7 @@ export default function Example() {
 
   const handleSwitch = (checked: boolean) => {
     dispatch({ type: 'toggle_login_switch' })
-    signIn(loginSwitch ? mock.dev : mock.hr)
+    signIn(checked ? mock.dev : mock.hr)
   }
 
   return (

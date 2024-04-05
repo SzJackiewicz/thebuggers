@@ -4,6 +4,7 @@ import { getNavigationData } from '@/lib/api/getNavigationData'
 import { userGroupName } from '@/constants/constants'
 import { Layout } from '@/components'
 import './globals.css'
+import { StoreProvider } from '@/providers/Store'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,9 +25,11 @@ export default async function RootLayout({
       lang='en'
       className='h-full bg-white'
     >
-      <body className={`${inter.className} h-full`}>
-        <Layout children={children} />
-      </body>
+      <StoreProvider>
+        <body className={`${inter.className} h-full`}>
+          <Layout children={children} />
+        </body>
+      </StoreProvider>
     </html>
   )
 }

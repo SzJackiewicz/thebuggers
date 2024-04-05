@@ -22,7 +22,7 @@ const devUser: User = {
 }
 
 export default function useAuth() {
-  const { get, set, remove } = useCookie()
+  const { set, remove } = useCookie()
   const { dispatch } = useStore()
 
   const signOut = () => {
