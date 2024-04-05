@@ -1,6 +1,7 @@
 import { User } from '@/interfaces/User'
 import { useEffect, useState } from 'react'
 import useCookie from './useCookie'
+import { useStore } from './useStore'
 
 const hrUser: User = {
   id: '924c3fb8-4529-4caa-8eec-6e4f8ce3131e',
@@ -21,32 +22,20 @@ const devUser: User = {
 }
 
 export default function useAuth() {
-  const { set, remove } = useCookie()
-  const [userData, setUserData] = useState<User | null>(hrUser)
-
-  useEffect(() => {
-    if (userData) {
-      set('userData', userData)
-    } else {
-      remove('userData')
-    }
-
-    return () => {
-      remove('userData')
-    }
-  }, [userData])
+  const { get, set, remove } = useCookie()
+  const { dispatch } = useStore()
 
   const signOut = () => {
-    setUserData(null)
+    dispatch({ type: 'logout' })
+    remove('userData')
   }
 
   const signIn = (user: User) => {
-    setUserData(user)
+    dispatch({ type: 'login_user', userData: user })
+    set('userData', user)
   }
 
   return {
-    userData,
-    setUserData,
     mock: {
       hr: hrUser,
       dev: devUser,
