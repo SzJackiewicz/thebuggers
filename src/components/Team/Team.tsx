@@ -25,9 +25,11 @@ const Team = async () => {
           <p className='text-sm leading-6 text-gray-600'>{team?.manager.managermember.teammemberposition}</p>
         </li>
       </ul>
+      <br></br>
+      <br></br>
       <ul
         role='list'
-        className='mx-auto mt-20 grid max-w-2xl grid-cols-2 justify-center gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-4 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:grid-cols-6'
+        className='mx-auto grid max-w-2xl  justify-center gap-x-8 gap-y-16 text-center sm:grid-cols-3 lg:mx-1 lg:max-w-none'
       >
         {team?.teammenmber.map((member) => (
           <li key={member.teammembername}>

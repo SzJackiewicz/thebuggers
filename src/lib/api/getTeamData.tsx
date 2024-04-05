@@ -2,7 +2,7 @@ import { performRequest, PerformRequestParams } from '@/lib/datocms'
 
 const PAGE_CONTENT_QUERY = `
 query GetTeamByUser {
-  team {
+  allTeams(filter: {teamname: {eq: "Ecommerce + Interfaces"}, teammenmber: {}}) {
     manager {
       managermember {
         teammembername
@@ -39,7 +39,7 @@ interface TeamMemberData {
 }
 
 interface Data {
-  team: TeamData
+  allTeams: TeamData[]
 }
 
 function getPageRequest(isEnabled: boolean): PerformRequestParams {
@@ -55,10 +55,8 @@ export async function getTeamData(): Promise<TeamData | undefined> {
   try {
     const pageRequest = getPageRequest(false)
     const data = await performRequest<Data>(pageRequest)
-
-    const team = data.team
-
-    return team
+    console.log(data)
+    return data.allTeams[0]
   } catch (error) {
     console.error('Error fetching navigation data:', error)
     return undefined
