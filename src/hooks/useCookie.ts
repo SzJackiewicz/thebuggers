@@ -1,25 +1,24 @@
-import { useState } from "react";
-import { useCookies } from "react-cookie";
+import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 
-export default function useCookie(name?: string, value?: any) {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [cookieValue, setCookieValue] = useState<any>();
+export default function useCookie() {
+  const [cookies, setCookie, removeCookie] = useCookies()
 
-  const get = () => {
-    setCookieValue(cookies[name!]);
-  };
+  const get = (name: string) => {
+    return cookies[name]
+  }
 
   const set = (setName: string, setValue: any) => {
-    setCookie(setName!, setValue!);
-  };
+    setCookie(setName!, setValue!)
+  }
 
   const remove = (removeName: string) => {
-    removeCookie(removeName!);
-  };
+    removeCookie(removeName!)
+  }
 
   return {
     get,
     set,
     remove,
-  };
+  }
 }

@@ -18,7 +18,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const menu = await getNavigationData(userGroupName.HR)
-  console.log(menu)
 
   return (
     <html
