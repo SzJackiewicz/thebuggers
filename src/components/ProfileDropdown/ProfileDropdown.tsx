@@ -10,11 +10,12 @@ import { Fragment, useEffect, useState } from 'react'
 
 const userNavigation = [
   { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Wyloguj', href: '/logout', id: 2 },
 ]
 
 const ProfileDropdown = () => {
   const [userName, setUserName] = useState<string>('')
+  const { signOut } = useAuth()
   const { userData, loginSwitch } = useStore()
   const { get } = useCookie()
 
@@ -67,6 +68,7 @@ const ProfileDropdown = () => {
                 <a
                   href={item.href}
                   className={classNames(active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900')}
+                  onClick={item?.id === 2 ? signOut : () => {}}
                 >
                   {item.name}
                 </a>

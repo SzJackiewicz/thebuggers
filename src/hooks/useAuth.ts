@@ -30,9 +30,16 @@ export default function useAuth() {
     remove('userData')
   }
 
-  const signIn = (user: User) => {
+  const signIn = async (user: User) => {
     dispatch({ type: 'login_user', userData: user })
-    set('userData', user)
+
+    try {
+      await set('userData', user)
+
+      return user
+    } catch (err) {
+      throw err
+    }
   }
 
   return {
