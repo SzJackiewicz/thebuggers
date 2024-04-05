@@ -1,4 +1,5 @@
 import { Feature, Section } from '@/lib/api/getHomePageData'
+import { getIconComponent } from '@/utils/getIconComponents'
 
 export const Home2 = (feature: Feature[], section: Section) => {
   return (
@@ -15,7 +16,9 @@ export const Home2 = (feature: Feature[], section: Section) => {
                 className='flex flex-col'
               >
                 <dt className='text-base font-semibold leading-7 text-white'>
-                  <div className='mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500'></div>
+                  <div className='mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500'>
+                    {getIconComponent(feature.iconname, 'shrink-0')}
+                  </div>
                   {feature.featureTitle}
                 </dt>
                 <dd className='mt-1 flex flex-auto flex-col text-base leading-7 text-gray-300'>

@@ -1,4 +1,5 @@
 import { performRequest, PerformRequestParams } from '@/lib/datocms'
+import * as HeroIcons from '@heroicons/react/24/outline'
 
 const PAGE_CONTENT_QUERY = `
 query getHomePage ($locale: SiteLocale){
@@ -22,7 +23,7 @@ query getHomePage ($locale: SiteLocale){
 export interface Feature {
   featureTitle: string
   featureDescription: string
-  iconname: string
+  iconname: keyof typeof HeroIcons
 }
 
 export interface Section {
@@ -53,7 +54,7 @@ function getPageRequest(isEnabled: boolean, locale: string = 'pl_PL'): PerformRe
 
 export async function getHomePageData(locale: string = 'pl_PL'): Promise<Data | undefined> {
   try {
-    const pageRequest = getPageRequest(false)
+    const pageRequest = getPageRequest(false, locale)
     const data = await performRequest<Data>(pageRequest)
     console.log(data)
     return data
