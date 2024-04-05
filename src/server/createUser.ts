@@ -1,14 +1,33 @@
 'use server'
 import { prisma } from '@/lib/db'
 
-export async function createUser() {
+const mapObjectToArray = (object) => {
+  const result = []
+  Object.keys(object).forEach((el) => {
+    result.push({ key: el, value: object[el] })
+  })
+
+  return result
+}
+
+export async function createUser(data) {
   try {
-    const users = await prisma.user.findMany({
-      include: {
-        answers: true,
+    const answers = mapObjectToArray(data.answers)
+    console.log(answers)
+    await prisma.user.create({
+      data: {
+        userId: data.email,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        link: data.link,
+        about: data.about,
+        testId: data.testId,
+        answers: {
+          create: answers,
+        },
       },
     })
-    return users
   } catch (error) {
     console.error(error)
   }

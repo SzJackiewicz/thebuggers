@@ -3,9 +3,10 @@ import { Suspense, useState } from 'react'
 import Progress from './components/Progress'
 import CandidateForm from './components/CandidateForm'
 import TestInfoSection from './components/TestInfoSection'
-import { Question, TestData, getTestById } from '@/lib/api/getTestById'
+import { TestData } from '@/lib/api/getTestById'
 import TestForm from './components/TestForm'
 import { mapQuestions } from './helpers/mapQuestionsAnswers'
+import { createUser } from '@/server/createUser'
 
 interface TestProps {
   id: string
@@ -27,19 +28,12 @@ export default function Test({ data, id }: TestProps) {
     testId: id,
   })
   const [step, setStep] = useState<number>(0)
-
-  const handleOnSubmit = () => {
-    // await subtmit
-    console.log({
+  const handleOnSubmit = async () => {
+    await createUser({
       ...candidateInfo,
       answers: testValues,
     })
   }
-
-  console.log({
-    ...candidateInfo,
-    answers: testValues,
-  })
 
   return (
     <Suspense fallback={<>Loading...</>}>
