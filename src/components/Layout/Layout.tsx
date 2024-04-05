@@ -1,6 +1,6 @@
 'use client'
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '..'
+import { NotificationsButton, ProfileDropdown, Sidebar, SidebarMobile } from '..'
 import { useState } from 'react'
 import SwitchUser from '../SwitchUser/SwitchUser'
 import { Settings } from '@/lib/api/getSettings'
@@ -58,7 +58,7 @@ const Layout = ({
               aria-hidden='true'
             />
             <div className='flex flex-1 gap-x-4 self-stretch lg:gap-x-6'>
-              <SearchBar />
+              <span className='flex-1' />
               <div className='flex items-center gap-x-4 lg:gap-x-6'>
                 <NotificationsButton />
                 <div
