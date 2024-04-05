@@ -1,27 +1,27 @@
 import { performRequest, PerformRequestParams } from '@/lib/datocms'
 
 const PAGE_CONTENT_QUERY = `
-query MyQuery {
-  layout {
-    menu {
-      ... on MenuItemRecord {
-        id
-        title
-      }
+query GetMenuByUser {
+  allMenus {
+    menuitems {
+      menuname
+    }
+    user {
+      username
     }
   }
 }
   `
-
+export interface MenuItem {
+  menuname: string
+}
 interface Menu {
-  id: string
-  title: string
+  menuitems: {menuname: string}
+  user: {username: string}
 }
 
 interface Data {
-  layout: {
-    menu: Menu[]
-  }
+  allMenus: Menu[]
 }
 
 function getPageRequest(isEnabled: boolean): PerformRequestParams {
@@ -33,12 +33,14 @@ function getPageRequest(isEnabled: boolean): PerformRequestParams {
   }
 }
 
-export async function getNavigationData() {
+export async function getNavigationData(username: string = ""): Promise<MenuItem[]>{
   try {
     const pageRequest = getPageRequest(false)
     const data = await performRequest<Data>(pageRequest)
 
-    return data.layout.menu
+    const allMenu = data.allMenus
+
+    return allMenu.filter(item => item.user.username === username).map(item => item.menuitems);
   } catch (error) {
     console.error('Error fetching navigation data:', error)
     return []

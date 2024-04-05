@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { getNavigationData } from '@/lib/api/getNavigationData'
+import { getNavigationData, Menu } from '@/lib/api/getNavigationData'
+import { userGroupName } from '@/constants/constants'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,11 +17,9 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
-  const menu = await getNavigationData()
+  const menu = await getNavigationData(userGroupName.HR)
+  console.log(menu)
 
-  menu.forEach((item) => {
-    console.log(item)
-  })
   return (
     <html lang='en'>
       <body className={inter.className}>{children}</body>
