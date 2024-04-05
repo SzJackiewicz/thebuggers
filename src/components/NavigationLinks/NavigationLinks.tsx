@@ -8,7 +8,9 @@ type Props = {
 }
 
 function getIconComponent(iconName: keyof typeof HeroIcons, className?: string): JSX.Element | null {
+  // @ts-ignore
   if (iconMap[iconName]) {
+    // @ts-ignore
     const IconComponent = iconMap[iconName]
     return (
       <IconComponent

@@ -6,7 +6,7 @@ import { userGroupName } from '@/constants/constants'
 import { Layout } from '@/components'
 import './globals.css'
 import { StoreProvider } from '@/providers/Store'
-import { getSettings } from '@/lib/api/getSettings'
+import { getSettings } from '../lib/api/getSettings'
 
 const inter = Inter({ subsets: ['latin'] })
 

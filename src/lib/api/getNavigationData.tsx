@@ -22,8 +22,9 @@ export const iconMap = {
   DocumentDuplicateIcon: HeroIcons.DocumentDuplicateIcon,
   FolderIcon: HeroIcons.FolderIcon,
   HomeIcon: HeroIcons.HomeIcon,
-  UsersIcon: HeroIcons.UsersIcon
-};
+  UsersIcon: HeroIcons.UsersIcon,
+  MapIcon: HeroIcons.MapIcon
+}
 
 export interface MenuItem {
   menuname: string
