@@ -5,6 +5,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import './globals.css'
 import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '@/components'
 import { getNavigationData } from '@/lib/api/getNavigationData'
+import { userGroupName } from '@/constants/constants'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,11 +19,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const menu = await getNavigationData()
+  const menu = await getNavigationData(userGroupName.HR)
+  console.log(menu)
 
-  menu.forEach((item) => {
-    console.log(item)
-  })
   return (
     <html
       lang='en'

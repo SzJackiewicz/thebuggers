@@ -42,3 +42,10 @@ export const SIDEBAR_LINKS = [
     slug: '/admin',
   },
 ]
+
+export const userGroupName = {
+  CANDIDATE: 'Candidate',
+  Manager: 'Manager',
+  HR: 'HR',
+  Employee: 'Employee',
+};
