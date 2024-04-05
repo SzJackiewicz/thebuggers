@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Head from 'next/head';
 import { Inter } from 'next/font/google'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 
@@ -6,6 +7,7 @@ import './globals.css'
 import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '@/components'
 import { getNavigationData } from '@/lib/api/getNavigationData'
 import { userGroupName } from '@/constants/constants'
+import { getSettings } from '@/lib/api/getSettings'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,19 +21,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const settings = await getSettings()
+  const faviconUrl = settings.favicon.url || '/favicon.ico'
+
   const menu = await getNavigationData(userGroupName.HR)
-  console.log(menu)
+
 
   return (
     <html
       lang='en'
       className='h-full bg-white'
     >
+    <Head>
+      <link rel="icon" href={faviconUrl} />
+    </Head>
       <body className={`${inter.className} h-full`}>
         <>
           <div>
             <SidebarMobile />
-            <Sidebar />
+            <Sidebar logo={settings.logo}/>
 
             <div className='lg:pl-72'>
               <div className='sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8'>

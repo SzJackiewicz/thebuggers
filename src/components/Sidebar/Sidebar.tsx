@@ -2,15 +2,18 @@ import { navigationLinks } from '@/constants/navigation'
 import { classNames } from '@/utils/styleUtils'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import React from 'react'
+import { Logo } from '@/lib/api/getSettings'
 
-const Sidebar = () => {
+const Sidebar = ({logo}: {logo: Logo}) => {
+  const logoUrl = logo.url || 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
+
   return (
     <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
       <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4'>
         <div className='flex h-16 shrink-0 items-center'>
           <img
             className='h-8 w-auto'
-            src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
+            src={logoUrl}
             alt='Your Company'
           />
         </div>
