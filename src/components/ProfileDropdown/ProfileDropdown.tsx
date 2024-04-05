@@ -1,5 +1,6 @@
 'use client'
 
+import useAuth from '@/hooks/useAuth'
 import { classNames } from '@/utils/styleUtils'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -11,6 +12,9 @@ const userNavigation = [
 ]
 
 const ProfileDropdown = () => {
+  const { userData } = useAuth()
+
+  console.log(userData)
   return (
     <Menu
       as='div'
