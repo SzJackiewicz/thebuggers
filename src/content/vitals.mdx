@@ -1,0 +1,90 @@
+### Core Web Vitals
+
+CWV to zbiór podstawowych wskaźników reprezentujących odrębne aspekty doświadczeń użytkownika i ma na celu odzwierciedlenie rzeczywistego doświadczenia (dlatego CWV powinny być na bieżąco monitorowane w raporcie field data, a lab data mogą zostać wykorzystane do przeprowadzania testów).
+
+Celem optymalizacji CWV jest zapewnienie użytkownikom najlepszych doświadczeń, w rozumieniu korzystania ze strony (tj. szybkość ładowania, interaktywność elementów, itd.).
+
+CWV dzielą się na 3 główne metryki, tj. LCP, CLS oraz FID (_FID zostanie zamieniony na INP w marcu 2024_). Każda z tych metryk jest osobnym bytem i jest niezależna od siebie.
+
+<VitalsTable />
+
+### LCP (Largest Contentful Paint)
+
+Metryka LCP odpowiada za czas, jaki jest potrzebny do wyrenderowania największego elementu na stronie. Kluczowe jest pilnowanie tego, co znajduje się na viewporcie.
+
+#### Główne elementy, które mogą być liczone jako LCP:
+
+- obrazy (`<img>`, `<image>` wewnątrz elementu `<svg>`, `<video>`, element z obrazem w tle ładowanym przez url(.))
+- tekst
+
+### Określenie stanu LCP
+
+![](/images/vitals/vitals1.png)
+
+Na przykładzie SG widać, że elementem LCP jest grafika pod wyszukiwarką.
+
+![](/images/vitals/vitals2.png)
+
+Element ten od moment wysłania requestu potrzebuje najwięcej czasu, by w pełni się wyrenderować oraz wyświetlić, skutkiem czego, użytkownik dopiero na samym końcu otrzymuje kluczowy obraz. Rozwiązaniem niniejszego problemu może być przykładowo kompresja grafiki, zmiana jej formatu na lżejszy (np. webp) lub dostosowanie rozdzielczości grafiki, do tej, która rzeczywiście wyświetlana jest użytkownikowi (tj. grafika może być wgrana w rozdzielczości 1920x1080px, jednakże wyświetlana jest w rozdzielczości 640x480px). Dodatkowym rozwiązaniem jest preloadowanie grafiki.
+
+Co ważne - nie zawsze ostatni załadowany element, będzie uznawany jako element LCP. W przypadku Instagrama - ich logo jest elementem LCP, choć ładuje się jako jeden z pierwszych elementów w kolejce.
+
+![](/images/vitals/vitals3.png)
+
+### CLS (Cumulative Layout Shift)
+
+CLS to metryka, która mierzy niestabilność contentu przez zsumowanie wszystkich przesunięć, które nie występują w ciągu 500 milisekund od podjęcia akcji przez użytkownika.
+
+![](/images/vitals/vitals4.png)
+
+Pojedyncze przesunięcie liczone jest zgodnie z wcześniej wspomnianą formułą. Dla zobrazowania tego procesu może wyglądać to następująco.
+
+![](/images/vitals/vitals5.png)
+
+### FID (First Input Delay)
+
+Metryka FID mierzy czas między pierwszą interakcją użytkownika ze stroną, a momentem, kiedy przeglądarka może rozpocząć przetwarzanie tej interakcji (do momentu, kiedy główny wątek przeglądarki jest w stanie “idle”).
+
+Innymi słowy - FID odzwierciedla opóźnienie między interakcją użytkownika, a czasem, w którym przeglądarka zareaguje na to działanie i zacznie je przetwarzać.
+
+Interakcja użytkownika to na przykład kliknięcie w link, button lub inny element obsługiwany przez JS.
+
+Z punktu widzenia użytkowników jest to ważny element wpływający na ich doświadczenia, ponieważ jakiekolwiek opóźnienie przy podjęciu akcji może powodować frustrację (np. gdy użytkownik chce przejść do oferty i klika odpowiedni button, jednak nie jest on od razu przenoszony na inną stronę, ponieważ główny wątek przeglądarki przetwarza inne żądanie, więc użytkownik musi poczekać, aż proces, który zainicjował przez kliknięcie, zostanie rozpoczęty).
+
+![](/images/vitals/vitals6.png)
+
+Poniższy schemat przedstawia jak w praktyce wygląda element FID.
+
+![](/images/vitals/vitals7.png)
+
+### INP (Interaction to Next Paint)
+
+INP to metryka, która wejdzie w życie w marcu 2024 i zastąpi FID, gdyż podchodzi do mierzenia interaktywności strony w bardziej kompleksowy sposób.
+
+W odróżnieniu od FID, INP mierzy wszystkie opóźnienia na stronie i jako wynik podaje wartość opóźnienia dla najgorszej interakcji (jeżeli < 50 interakcji) lub podaje 99 lub 98 percentyl (jeżeli >50 interakcji). FID obecnie mierzy wyłącznie pierwszą interakcję.
+
+FID/INP to metryki, na które warto zwrócić szczególną uwagę ze względu na to, że ich wyniki mogą szybko wskazać ewentualnie problemy z wydajnością strony. Po przejściu na INP możliwe będzie mierzenie responsywności i jakości danej strony z punktu widzenia użytkowników.
+
+## Narzędzia do monitoringu
+
+### Narzędzia do weryfikacji LCP/CLS (field data):
+
+1. CRuX
+2. [Web Vitals Dashboard](https://rserver.grupawakacje.pl/dzialy/e-commerce-1/web_vitals/)
+3. PageSpeed Insights
+
+### Narzędzia do weryfikacji LCP/CLS (lab data):
+
+1. PageSpeed Insights
+2. WebPageTest
+3. Chrome Dev Tools
+
+### Narzędzia do mierzenia FID/INP (field data):
+
+1. CRuX
+2. [Web Vitals Dashboard](https://rserver.grupawakacje.pl/dzialy/e-commerce-1/web_vitals/)
+3. Event Timing API ([Measure FID in JavaScript](https://web.dev/fid/#measure-fid-in-javascript))
+4. PageSpeed Insights
+
+export default ({ children }) => <div className='prose max-w-none'>{children}</div>
+import { VitalsTable } from './Vitals'

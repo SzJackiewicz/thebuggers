@@ -11,6 +11,7 @@ query getHomePage ($locale: SiteLocale){
         displayOption
         featuresHeader
         feature {
+          slug
           featureTitle
           featureDescription
           iconname
