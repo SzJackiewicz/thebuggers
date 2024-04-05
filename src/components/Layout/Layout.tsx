@@ -5,6 +5,7 @@ import { useState } from 'react'
 import SwitchUser from '../SwitchUser/SwitchUser'
 import { Settings } from '@/lib/api/getSettings'
 import { MenuItem } from '@/lib/api/getNavigationData'
+import { usePathname } from 'next/navigation'
 
 const Layout = ({
   children,
@@ -15,8 +16,17 @@ const Layout = ({
   settings: Settings
   navigation: MenuItem[]
 }>) => {
+  const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const logoSettings = settings.logo
+
+  if (pathname.includes('/test') || pathname.includes('login')) {
+    return (
+      <main className='py-10'>
+        <div className='px-4 sm:px-6 lg:px-8'>{children}</div>
+      </main>
+    )
+  }
 
   return (
     <>
