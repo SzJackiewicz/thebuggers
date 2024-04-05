@@ -1,8 +1,7 @@
 import { classNames } from '@/utils/styleUtils'
 import { usePathname } from 'next/navigation'
 import { iconMap, MenuItem } from '@/lib/api/getNavigationData'
-import * as HeroIcons from '@heroicons/react/24/outline';
-
+import * as HeroIcons from '@heroicons/react/24/outline'
 
 type Props = {
   navigation: MenuItem[]
@@ -11,16 +10,20 @@ type Props = {
 function getIconComponent(iconName: keyof typeof HeroIcons, className?: string): JSX.Element | null {
   if (iconMap[iconName]) {
     const IconComponent = iconMap[iconName]
-    return <IconComponent className={`h-6 w-6 ${className}`} aria-hidden="true" />
+    return (
+      <IconComponent
+        className={`h-6 w-6 ${className}`}
+        aria-hidden='true'
+      />
+    )
   } else {
     return null
   }
 }
 
-const NavigationLinks = ({navigation}: Props) => {
+const NavigationLinks = ({ navigation }: Props) => {
   const pathname = usePathname()
   const pathnameMain = pathname.split('/')[1] || ''
-
   return (
     <ul
       role='list'
