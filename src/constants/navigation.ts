@@ -8,3 +8,30 @@ export const navigationLinks = [
   { name: 'Dokumenty', href: '/documents', icon: DocumentDuplicateIcon, current: false },
   { name: 'Menadżer', href: '/manager', icon: ChartPieIcon, current: false },
 ]
+
+
+
+
+// HR:
+
+
+
+
+  // UnAssigne:
+  //   'Strona główna'
+  //
+  //
+  // Manager:
+  //   'Strona główna'
+  //   'Menadżer'
+  //
+  //
+  // HR:
+  //   'Strona główna'
+  //     'HR-App'
+  //
+  //
+  // Employee:
+  //   'Strona główna'
+  //   'Onboarding'
+  //

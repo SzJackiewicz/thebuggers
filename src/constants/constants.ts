@@ -44,7 +44,7 @@ export const SIDEBAR_LINKS = [
 ]
 
 export const userGroupName = {
-  CANDIDATE: 'Candidate',
+  UnAssigned: 'UnAssigned',
   Manager: 'Manager',
   HR: 'HR',
   Employee: 'Employee',

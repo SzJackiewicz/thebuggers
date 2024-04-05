@@ -22,7 +22,7 @@ export default async function RootLayout({
   const settings = await getSettings()
   const faviconUrl = settings.favicon.url || '/favicon.ico'
 
-  const menu = await getNavigationData(userGroupName.HR)
+  const navigation = await getNavigationData(userGroupName.HR)
 
 
   return (
@@ -34,7 +34,7 @@ export default async function RootLayout({
       <link rel="icon" href={faviconUrl} />
     </Head>
       <body className={`${inter.className} h-full`}>
-        <Layout children={children} logo={settings.logo}/>
+        <Layout children={children} settings={settings} navigation={navigation}/>
       </body>
     </html>
   )

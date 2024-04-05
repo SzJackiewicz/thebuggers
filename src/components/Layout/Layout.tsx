@@ -2,15 +2,19 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '..'
 import { useState } from 'react'
-import { Logo } from '@/lib/api/getSettings'
+import { Settings } from '@/lib/api/getSettings'
+import { MenuItem } from '@/lib/api/getNavigationData'
 
 const Layout = ({
-  children, logo,
+  children, settings, navigation
 }: Readonly<{
   children: React.ReactNode
-  logo: Logo
+  settings: Settings
+  navigation: MenuItem[]
 }>) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const logoSettings = settings.logo
+
   return (
     <>
       <div>
@@ -18,7 +22,7 @@ const Layout = ({
           isOpen={sidebarOpen}
           setOpen={setSidebarOpen}
         />
-        <Sidebar logo={logo}/>
+        <Sidebar logo={logoSettings} navigation={navigation}/>
 
         <div className='lg:pl-72'>
           <div className='sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8'>

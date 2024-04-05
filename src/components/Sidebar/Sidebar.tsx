@@ -2,8 +2,14 @@ import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { NavigationLinks } from '..'
 import React from 'react'
 import { Logo } from '@/lib/api/getSettings'
+import { MenuItem } from '@/lib/api/getNavigationData'
 
-const Sidebar = ({logo}: {logo: Logo}) => {
+type Props = {
+  logo: Logo
+  navigation: MenuItem[]
+}
+
+const Sidebar = ({logo, navigation}: Props) => {
   const logoUrl = logo.url || 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
 
   return (
@@ -22,7 +28,7 @@ const Sidebar = ({logo}: {logo: Logo}) => {
             className='flex flex-1 flex-col gap-y-7'
           >
             <li>
-              <NavigationLinks />
+              <NavigationLinks navigation={navigation}/>
             </li>
             <li className='mt-auto'>
               <a
