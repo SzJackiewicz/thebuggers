@@ -3,7 +3,7 @@ const PAGE_CONTENT_QUERY = `
 query getHomePage{
   allDocuments {
     document {
-      filename
+      url
     }
     documentname
     ducumenturl
@@ -13,7 +13,7 @@ query getHomePage{
   `
 
 export interface Document {
-  filename: string
+  url: string
 }
 
 interface DocumentObject {
