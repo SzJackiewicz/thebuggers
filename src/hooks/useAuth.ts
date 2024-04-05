@@ -17,7 +17,7 @@ const devUser: User = {
   age: 31,
   email: 'braylon.griffin@email.com',
   departmentId: '32',
-  departmentName: 'IT',
+  departmentName: 'Employee',
 }
 
 export default function useAuth() {
