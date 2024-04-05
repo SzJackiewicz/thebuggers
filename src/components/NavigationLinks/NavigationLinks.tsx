@@ -34,7 +34,7 @@ const NavigationLinks = ({ navigation }: Props) => {
       {navigation.map((item: MenuItem) => (
         <li key={item.menuname}>
           <a
-            href={item.slug}
+            href={`/${item.slug}`}
             className={classNames(
               pathnameMain === item.slug.substring(1) ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800',
               'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
