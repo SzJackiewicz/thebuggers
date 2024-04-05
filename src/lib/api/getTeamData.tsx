@@ -55,7 +55,6 @@ export async function getTeamData(): Promise<TeamData | undefined> {
   try {
     const pageRequest = getPageRequest(false)
     const data = await performRequest<Data>(pageRequest)
-    console.log(data)
     return data.allTeams[0]
   } catch (error) {
     console.error('Error fetching navigation data:', error)
