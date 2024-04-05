@@ -1,7 +1,7 @@
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { NavigationLinks } from '..'
 import React from 'react'
-import { Logo } from '@/lib/api/getSettings'
+import { Logo } from '../../lib/api/getSettings'
 import { MenuItem } from '@/lib/api/getNavigationData'
 
 type Props = {

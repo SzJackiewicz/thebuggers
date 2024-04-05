@@ -1,10 +1,11 @@
 import { performRequest, PerformRequestParams } from '@/lib/datocms'
 import * as HeroIcons from '@heroicons/react/24/outline';
+import { useStore } from '@/hooks/useStore'
 
 const PAGE_CONTENT_QUERY = `
-query GetMenuByUser {
+query GetMenu ($locale: SiteLocale) {
   allMenus {
-    menuitems {
+    menuitems(locale: $locale) {
       menuname
       slug
       icon
@@ -40,18 +41,20 @@ interface Data {
   allMenus: Menu[]
 }
 
-function getPageRequest(isEnabled: boolean): PerformRequestParams {
+function getPageRequest(isEnabled: boolean, locale: string = 'pl_PL'): PerformRequestParams {
   return {
     query: PAGE_CONTENT_QUERY,
     includeDrafts: isEnabled,
-    variables: {},
+    variables: {
+      "locale": locale
+    },
     revalidate: 0,
   }
 }
 
-export async function getNavigationData(username: string = ""): Promise<MenuItem[]>{
+export async function getNavigationData(username: string = "", locale: string = "pl_PL"): Promise<MenuItem[]>{
   try {
-    const pageRequest = getPageRequest(false)
+    const pageRequest = getPageRequest(false, locale)
     const data = await performRequest<Data>(pageRequest)
 
     const allMenu = data.allMenus

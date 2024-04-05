@@ -23,7 +23,8 @@ export default async function RootLayout({
   const settings = await getSettings()
   const faviconUrl = settings.favicon.url || '/favicon.ico'
 
-  const navigation = await getNavigationData(userGroupName.HR)
+  // TODO: przerobienie na cookie
+  const navigation = await getNavigationData(userGroupName.HR, 'pl_PL')
 
   return (
     <html
