@@ -2,6 +2,7 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { NotificationsButton, ProfileDropdown, SearchBar, Sidebar, SidebarMobile } from '..'
 import { useState } from 'react'
+import SwitchUser from '../SwitchUser/SwitchUser'
 
 const Layout = ({
   children,
@@ -44,6 +45,11 @@ const Layout = ({
                   aria-hidden='true'
                 />
                 <ProfileDropdown />
+                <div
+                  className='hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10'
+                  aria-hidden='true'
+                />
+                <SwitchUser />
               </div>
             </div>
           </div>
