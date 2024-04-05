@@ -1,8 +1,27 @@
-import { navigationLinks } from '@/constants/navigation'
 import { classNames } from '@/utils/styleUtils'
 import { usePathname } from 'next/navigation'
+import { iconMap, MenuItem } from '@/lib/api/getNavigationData'
+import * as HeroIcons from '@heroicons/react/24/outline'
 
-const NavigationLinks = () => {
+type Props = {
+  navigation: MenuItem[]
+}
+
+function getIconComponent(iconName: keyof typeof HeroIcons, className?: string): JSX.Element | null {
+  if (iconMap[iconName]) {
+    const IconComponent = iconMap[iconName]
+    return (
+      <IconComponent
+        className={`h-6 w-6 ${className}`}
+        aria-hidden='true'
+      />
+    )
+  } else {
+    return null
+  }
+}
+
+const NavigationLinks = ({ navigation }: Props) => {
   const pathname = usePathname()
   const pathnameMain = pathname.split('/')[1] || ''
   return (
@@ -10,20 +29,17 @@ const NavigationLinks = () => {
       role='list'
       className='-mx-2 space-y-1'
     >
-      {navigationLinks.map((item) => (
-        <li key={item.name}>
+      {navigation.map((item: MenuItem) => (
+        <li key={item.menuname}>
           <a
-            href={item.href}
+            href={item.slug}
             className={classNames(
-              pathnameMain === item.href.substring(1) ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800',
+              pathnameMain === item.slug.substring(1) ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800',
               'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
             )}
           >
-            <item.icon
-              className='h-6 w-6 shrink-0'
-              aria-hidden='true'
-            />
-            {item.name}
+            {getIconComponent(item.icon, 'shrink-0')}
+            {item.menuname}
           </a>
         </li>
       ))}
