@@ -1,22 +1,24 @@
+**Unleash** jest projektem open-sourcowym narzędziem do zarządzania feature flagami. Strona projektu [https://www.getunleash.io/]. Wykorzystujemy je go realizacji testów A/B.
+
+### **Jak testować?**
+
 Wszystkie testy A/B i ich rozkodowane nazwy możecie znaleźć tutaj: [https://coda.io/d/Web-Analytics-resources_dqLiPPUnY_h/Repo-testow-AB_sulzZ](https://coda.io/d/Web-Analytics-resources_dqLiPPUnY_h/Repo-testow-AB_sulzZ)
+![](/images/unleash/unleash2.png)
 
 Aby sprawdzić jakie testy zostały wylosowane przez Unleasha lub jak je zmodyfikować możemy się posłużyć trzema metodami, a dokładnie:
 
 1. **Pierwszym sposobem** jest posłużenie się endpointem który zostaje nam zwrócony w Networku na ŚT/Prodzie
-   ![](image-2023-12-18_21-19-17.png)
    Następnie w preview mamy podgląd testów które są włączone na danym środowisku i możemy je rozwinąć, aby sprawdzić który wariant został wylosowany.
-   ![](image-2023-12-18_21-19-33.png)
 
 2. **Drugim sposobem** jest użycie w URL'u z parametru [http://trip-311.test.wakacje.grupawakacje.pl/?unleash-debugger=1](http://trip-311.test.wakacje.grupawakacje.pl/?unleash-debugger=1)
    Zostanie uruchomione narzędzie do debugowania testów i w szybki sposób można wymuszać inne warianty testów, zresetować wymuszone wersje testów które wybrano lub odświeżyć sesje przez co na nowo powinno wylosować konkretne zestawy testów
-   ![](image-2023-12-18_21-29-19.png)
+   ![](/images/unleash/unleash3.png)
 
 3. **Kolejnym sposobem** jest zmiana w cookies poprzez dodanie lub modyfikacje ciastka. A konkretnie trzeba wejść w DevTools → Application → zakładka od ciastek i wpisać w unleash-forced-toggles np. C_TABW72.a!
    Każdy kolejny test który chcemy wymusić(wersję A lub B) musimy oddzielić znakiem '!'
-   ![](image-2024-1-12_13-18-26.png)
 
 ### **Testy SEO**
 
 Dla widoku Google bota i wyłączonego JS'a testy które normalnie by mogły nie działać(mógłby się wyświetlać fake content z powodu JS'a) na Unleashu działają w ten sposób że to serwer zwraca gotowy i przetworzony skrypt, w rezultacie czego otrzymujemy już gotowy kod HTML. Przykładem takiego testu gdzie jest to dobrze widoczne jest np, Zamawianie rozmów
 
-export default ({ children }) => <div className='prose'>{children}</div>
+export default ({ children }) => <div className='prose max-w-none'>{children}</div>
