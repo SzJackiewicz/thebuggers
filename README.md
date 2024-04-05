@@ -1,25 +1,32 @@
-## Getting Started
+Aplikacja do tworzenia formularzy rekrutacyjnych i wspierająca onboarding
 
-First, run the development server:
+### Aby zacząć
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Konfiguracja dockera, podłączenie lokalnej bazy danych:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# stawianie kontenera dockerowego w tle
+$ docker-compose up -d
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+# Wysyłanie migracji do kontenera
+$ prisma db push lub npx prisma db push
+```
 
-## Deploy on Vercel
+```bash
+# seedowanie danych do kontenera
+$ prisma db seed lub npx prisma db seed
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# uruchomienie prisma studio
+$ prisma studio lub npx prisma studio
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Otwórz [http://localhost:3000](http://localhost:3000)

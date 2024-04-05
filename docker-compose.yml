@@ -1,0 +1,15 @@
+# Set the version of docker compose to use
+version: '3.3'
+
+# The containers that compose the project
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: postgres_thebuggers
+    ports:
+      - '5444:5432'
+    environment:
+      POSTGRES_USER: local_user
+      POSTGRES_PASSWORD: local_password
+      POSTGRES_DB: local_db_thebuggers
