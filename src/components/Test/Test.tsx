@@ -1,6 +1,4 @@
 'use client'
-import { steps } from '@/utils/testSteps'
-import { CheckIcon } from '@heroicons/react/24/outline'
 import { Suspense, useState } from 'react'
 import Progress from './components/Progress'
 import CandidateForm from './components/CandidateForm'

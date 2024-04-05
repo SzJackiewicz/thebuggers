@@ -22,8 +22,8 @@ const Layout = ({
 
   if (pathname.includes('/test/') || pathname.includes('login')) {
     return (
-      <main className='py-10'>
-        <div className='px-4 sm:px-6 lg:px-8'>{children}</div>
+      <main className='py-10 h-full'>
+        <div className='px-4 sm:px-6 lg:px-8 h-full'>{children}</div>
       </main>
     )
   }
