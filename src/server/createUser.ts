@@ -1,7 +1,7 @@
 'use server'
 import { prisma } from '@/lib/db'
 
-export async function getUsers() {
+export async function createUser() {
   try {
     const users = await prisma.user.findMany({
       include: {
