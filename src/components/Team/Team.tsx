@@ -2,7 +2,9 @@ import { getTeamData } from '@/lib/api/getTeamData'
 import React from 'react'
 
 const Team = async () => {
-  const team = await getTeamData()
+  // TODO:
+  const teamName = "Ecommerce + Interfaces"
+  const team = await getTeamData(teamName)
   return (
     <div className='mx-auto max-w-7xl px-6 lg:px-8'>
       <div className='mx-auto max-w-2xl lg:mx-0'>
