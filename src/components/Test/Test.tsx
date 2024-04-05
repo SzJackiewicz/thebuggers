@@ -28,13 +28,24 @@ export default function Test({ data, id }: TestProps) {
   })
   const [step, setStep] = useState<number>(0)
 
-  console.log({ ...candidateInfo, answers: testValues })
+  const handleOnSubmit = () => {
+    // await subtmit
+    console.log({
+      ...candidateInfo,
+      answers: testValues,
+    })
+  }
+
+  console.log({
+    ...candidateInfo,
+    answers: testValues,
+  })
 
   return (
     <Suspense fallback={<>Loading...</>}>
       <Progress
         step={step as number}
-        {...{ name: data.name }}
+        {...{ name: data.name, handleOnSubmit }}
       >
         {step === 0 && <TestInfoSection {...{ setStep }} />}
         {step === 1 && <CandidateForm {...{ setStep, setCandidateInfo, candidateInfo }} />}
