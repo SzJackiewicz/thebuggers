@@ -1,23 +1,29 @@
 'use server'
 import { prisma } from '@/lib/db'
 
-export async function createUser({ data }) {
+const mapObjectToArray = (object) => {
+  const result = []
+  Object.keys(object).forEach((el) => {
+    result.push({ key: el, value: object[el] })
+  })
+
+  return result
+}
+
+export async function createUser(data) {
   try {
+    const answers = mapObjectToArray(data.answers)
+    console.log(answers)
     await prisma.user.create({
       data: {
-        userId: data.userId,
+        userId: data.email,
         name: data.name,
         surname: data.surname,
         email: data.email,
         link: data.link,
         about: data.about,
         answers: {
-          create: [
-            {
-              key: data.key,
-              value: data.value,
-            },
-          ],
+          create: answers,
         },
       },
     })
