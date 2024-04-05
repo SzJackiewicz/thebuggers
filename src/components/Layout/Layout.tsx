@@ -5,16 +5,28 @@ import { useState } from 'react'
 import SwitchUser from '../SwitchUser/SwitchUser'
 import { Settings } from '@/lib/api/getSettings'
 import { MenuItem } from '@/lib/api/getNavigationData'
+import { usePathname } from 'next/navigation'
 
 const Layout = ({
-  children, settings, navigation
+  children,
+  settings,
+  navigation,
 }: Readonly<{
   children: React.ReactNode
   settings: Settings
   navigation: MenuItem[]
 }>) => {
+  const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const logoSettings = settings.logo
+
+  if (pathname.includes('/test') || pathname.includes('login')) {
+    return (
+      <main className='py-10'>
+        <div className='px-4 sm:px-6 lg:px-8'>{children}</div>
+      </main>
+    )
+  }
 
   return (
     <>
@@ -23,7 +35,10 @@ const Layout = ({
           isOpen={sidebarOpen}
           setOpen={setSidebarOpen}
         />
-        <Sidebar logo={logoSettings} navigation={navigation}/>
+        <Sidebar
+          logo={logoSettings}
+          navigation={navigation}
+        />
 
         <div className='lg:pl-72'>
           <div className='sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8'>
