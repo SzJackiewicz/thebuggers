@@ -12,6 +12,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "@mdx-js/loader": "^3.0.1",
     "@prisma/client": "^5.10.2",
     "prisma": "^5.10.2",
