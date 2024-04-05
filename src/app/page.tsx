@@ -1,6 +1,7 @@
 import { getHomePageData } from '@/lib/api/getHomePageData'
 import { Home1 } from '@/components/Home/Home-1'
 import { Home2 } from '@/components/Home/Home-2'
+import { Home3 } from '@/components/Home/Home-3'
 
 export default async function Home() {
   // TODO:
@@ -17,6 +18,8 @@ export default async function Home() {
         return Home1(feature, section)
       case 'grid':
         return Home2(feature, section)
+      case 'with_product':
+        return Home3(feature, section)
       default:
         return Home1(feature, section)
     }

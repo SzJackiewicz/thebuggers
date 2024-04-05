@@ -15,6 +15,7 @@ query getHomePage ($locale: SiteLocale){
           featureTitle
           featureDescription
           iconname
+          slug
         }
       }
     }
