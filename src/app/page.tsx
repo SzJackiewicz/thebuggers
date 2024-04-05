@@ -12,7 +12,6 @@ export default async function Home() {
   const feature = section.feature
 
   const chooseComponent = (name: string) => {
-    console.log(name)
     switch (name) {
       case 'card':
         return Home1(feature, section)

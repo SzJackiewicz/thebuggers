@@ -11,6 +11,7 @@ query getHomePage ($locale: SiteLocale){
         displayOption
         featuresHeader
         feature {
+          slug
           featureTitle
           featureDescription
           iconname
@@ -24,6 +25,7 @@ export interface Feature {
   featureTitle: string
   featureDescription: string
   iconname: keyof typeof HeroIcons
+  slug: string
 }
 
 export interface Section {
