@@ -15,14 +15,7 @@ const Sidebar = ({ logo, navigation }: Props) => {
   return (
     <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
       <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4'>
-        <div className='flex h-16 shrink-0 items-center py-4 mt-4'>
-          <img
-            className='h-16 w-auto'
-            src={logoUrl}
-            alt='Your Company'
-          />
-        </div>
-        <nav className='flex flex-1 flex-col'>
+        <nav className='flex flex-1 flex-col mt-5'>
           <ul
             role='list'
             className='flex flex-1 flex-col gap-y-7'
