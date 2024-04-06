@@ -22,16 +22,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const cookieStore = cookies()
-  const cookiesString = cookieStore.get('userData')?.value
+  const userData = cookieStore.get('userData')?.value
+  const lang = cookieStore.get('lang')?.value
   const settings = await getSettings()
   const faviconUrl = settings.favicon.url || '/favicon.ico'
 
-  // TODO: przerobienie na cookie
-  const navigation = await getNavigationData((cookiesString && JSON.parse(cookiesString)?.departmentName) || userGroupName.HR, 'pl_PL')
+  const navigation = await getNavigationData((userData && JSON.parse(userData)?.departmentName) || userGroupName.HR, lang || 'pl_PL')
 
   return (
     <html
-      lang='en'
+      lang={lang || 'en'}
       className='h-full bg-white'
     >
       <StoreProvider>
@@ -46,6 +46,7 @@ export default async function RootLayout({
             children={children}
             settings={settings}
             navigation={navigation}
+            initialLang={lang || 'pl_PL'}
           />
         </body>
       </StoreProvider>
