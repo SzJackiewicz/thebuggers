@@ -7,6 +7,7 @@ import Modal from '../Modal/Modal'
 export default function Candidates({ candidates }: { candidates: any }) {
   const [open, setOpen] = useState<string>('')
   const [people, setPeople] = useState(mapCandidates(candidates))
+  
   return (
     <ul
       role='list'
