@@ -11,7 +11,7 @@ export const initialState: State = {
     departmentName: 'HR',
   },
   loginSwitch: false,
-  locale: 'pl_PL'
+  locale: 'pl_PL',
 }
 
 export const reducer = (state: State = initialState, action: Action) => {
@@ -19,7 +19,10 @@ export const reducer = (state: State = initialState, action: Action) => {
     case 'login_user': {
       return {
         ...state,
-        userData: action.userData,
+        userData: {
+          ...state.userData,
+          departmentName: action.userData || 'HR',
+        },
       }
     }
 
@@ -40,7 +43,7 @@ export const reducer = (state: State = initialState, action: Action) => {
     case 'locale': {
       return {
         ...state,
-        locale: action.locale
+        locale: action.locale,
       }
     }
 

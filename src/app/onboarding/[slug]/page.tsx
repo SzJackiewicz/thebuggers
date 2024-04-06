@@ -6,17 +6,10 @@ import React from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Devs } from '@/content/Devs'
 
-
-
-
 export default async function Frontend({ params: { slug } }: { params: { slug: string } }) {
   const getGroupData = await getGroups()
 
-  const module =  getGroupData.filter((item) => item.path.href === slug)
-  .flatMap((item) => item.module)
-
-
-  console.log({module})
+  const module = getGroupData.filter((item) => item.path.href === slug).flatMap((item) => item.module)
 
   const tabs = module.map((tab) => (
     <TabsTrigger
@@ -28,16 +21,13 @@ export default async function Frontend({ params: { slug } }: { params: { slug: s
   ))
 
   const tabsContent = module.map((tab) => {
-
     return (
       <TabsContent
         key={tab.id}
         value={tab.modulecontent}
         className='prose max-w-none mx-8'
       >
-        {tab.modulename === 'Devs4Devs' ? <Devs /> :  <MDXRemote source={tab.modulecontent} />}
-
-
+        {tab.modulename === 'Devs4Devs' ? <Devs /> : <MDXRemote source={tab.modulecontent} />}
       </TabsContent>
     )
   })

@@ -13,7 +13,6 @@ const mapObjectToArray = (object) => {
 export async function createUser(data) {
   try {
     const answers = mapObjectToArray(data.answers)
-
     await prisma.user.create({
       data: {
         userId: data.email,
