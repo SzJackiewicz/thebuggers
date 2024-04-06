@@ -11,10 +11,12 @@ const Layout = ({
   children,
   settings,
   navigation,
+  initialLang,
 }: Readonly<{
   children: React.ReactNode
   settings: Settings
   navigation: MenuItem[]
+  initialLang: string
 }>) => {
   const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -70,7 +72,7 @@ const Layout = ({
                   className='hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10'
                   aria-hidden='true'
                 />
-                <SwitchUser />
+                <SwitchUser {...{ initialLang }} />
               </div>
             </div>
           </div>

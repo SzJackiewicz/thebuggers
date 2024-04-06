@@ -34,9 +34,10 @@ export const reducer = (state: State = initialState, action: Action) => {
     }
 
     case 'toggle_login_switch': {
+      const isUndefined = action.loginSwitch === undefined
       return {
         ...state,
-        loginSwitch: !state.loginSwitch,
+        loginSwitch: isUndefined ? !state.loginSwitch : action.loginSwitch,
       }
     }
 

@@ -5,7 +5,6 @@ import { getToDoData } from '@/lib/api/getTodoList'
 export default async function TodoList() {
   const todoList = await getToDoData()
   if (!todoList) return
-  console.log(todoList)
   return (
     <fieldset>
       <div className='space-y-5'>

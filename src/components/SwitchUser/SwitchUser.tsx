@@ -1,25 +1,27 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Switch } from '@headlessui/react'
-import useAuth from '@/hooks/useAuth'
 import { useStore } from '@/hooks/useStore'
+import useCookie from '@/hooks/useCookie'
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example({ initialLang }: { initialLang: string }) {
+  const router = useRouter()
   const { loginSwitch, dispatch } = useStore()
-  const { signIn, mock } = useAuth()
+  const { set } = useCookie()
 
   const handleSwitch = (checked: boolean) => {
     dispatch({ type: 'toggle_login_switch' })
-    signIn(checked ? mock.dev : mock.hr)
+    set('lang', checked ? 'en' : 'pl_PL')
+    router.refresh()
   }
 
   return (
     <Switch
-      checked={loginSwitch}
+      defaultChecked={initialLang !== 'pl_PL'}
       onChange={handleSwitch}
       className={classNames(
         loginSwitch ? 'bg-indigo-600' : 'bg-gray-200',
@@ -31,9 +33,11 @@ export default function Example() {
         aria-hidden='true'
         className={classNames(
           loginSwitch ? 'translate-x-5' : 'translate-x-0',
-          'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+          'text-[0.6rem] flex justify-center items-center pointer-events-none h-full w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
         )}
-      />
+      >
+        {!loginSwitch ? 'PL' : 'EN'}
+      </span>
     </Switch>
   )
 }
