@@ -2,10 +2,6 @@ import { getDocumentsData } from '@/lib/api/getDocumentsData'
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
 import { classNames } from '@/utils/styleUtils'
 
-function getFileExtension(filename: string) {
-  return filename.slice(((filename.lastIndexOf('.') - 1) >>> 0) + 2)
-}
-
 export default async function Document() {
   const locale = 'pl_PL'
   const data = await getDocumentsData(locale)
