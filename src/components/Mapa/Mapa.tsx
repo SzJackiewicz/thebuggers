@@ -28,7 +28,7 @@ const Mapa = () => {
     const circle = document.getElementById(`punkt-${selected}`)
     const text = document.getElementById(`punkt-${selected}-text`)
     if (circle) {
-      circle.style.fill = '#22c55e'
+      circle.style.fill = '#8b5cf6'
       circle.scrollIntoView({ behavior: 'smooth' })
     }
     if (text) {
@@ -47,17 +47,18 @@ const Mapa = () => {
       <div className='flex gap-2 justify-center flex-wrap mb-5'>
         {mapPoints
           .filter((point) => point.name.toLowerCase().includes(searchPhrase.toLowerCase()))
+          .sort((a, b) => a.id - b.id)
           .map((point) => (
             <button
               key={point.id}
               onClick={() => setSelected(point.id)}
               type='button'
               className={classNames(
-                'rounded-full px-2.5 py-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300',
-                selected === point.id ? 'bg-green-500 text-white' : 'text-gray-900'
+                'rounded-full px-2.5 py-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-500',
+                selected === point.id ? 'bg-violet-500 text-white' : 'text-gray-900'
               )}
             >
-              {point.name}
+              <strong>{point.id}</strong> - {point.name}
             </button>
           ))}
       </div>
