@@ -4,10 +4,12 @@ export default function CandidateForm({
   setStep,
   candidateInfo,
   setCandidateInfo,
+  setDate,
 }: {
   setStep: Dispatch<SetStateAction<number>>
   candidateInfo: any
   setCandidateInfo: Dispatch<SetStateAction<any>>
+  setDate: Dispatch<SetStateAction<any>>
 }) {
   return (
     <div className='relative isolate bg-white px-6 py-12 sm:py-16 lg:px-8'>
@@ -154,7 +156,10 @@ export default function CandidateForm({
             <div className='mt-10'>
               <div
                 // type='submit'
-                onClick={() => setStep(2)}
+                onClick={() => {
+                  setStep(2)
+                  setDate(Date.now())
+                }}
                 className='cursor-pointer block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >
                 Wyślij

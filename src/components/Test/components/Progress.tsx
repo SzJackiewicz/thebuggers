@@ -6,10 +6,10 @@ interface ProgressProps {
   name: string
   children: React.ReactNode
   handleOnSubmit: () => void
+  date: any
 }
 
-export default function Progress({ step, name, handleOnSubmit, children }: ProgressProps) {
-  // const
+export default function Progress({ step, name, handleOnSubmit, children, date }: ProgressProps) {
   return (
     <div className='w-full h-full flex flex-col justify-between'>
       {children}
@@ -37,7 +37,7 @@ export default function Progress({ step, name, handleOnSubmit, children }: Progr
             ) : (
               <>
                 <div className='text-indigo-600'>
-                  <Countdown date={Date.now() + 10 * 60000} />
+                  <Countdown date={date + 10 * 60000} />
                 </div>
                 <div />
                 <div />
