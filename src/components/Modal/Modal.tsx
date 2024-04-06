@@ -43,13 +43,13 @@ export default function Modal({ open, setOpen, candidate }: any) {
                     <span className='text-lg font-medium leading-none text-white'>{candidate.avatar}</span>
                   </span>
                   <div className='flex-1 truncate'>
-                    <div className='flex items-start space-x-3 flex-col gap-3'>
+                    <div className='flex items-start flex-col gap-3'>
                       <h3 className='truncate text-md font-medium text-gray-900'>{candidate.name}</h3>
-                      <span className='min-w-48 px-2 inline-flex flex-shrink-0 items-center rounded-full bg-green-50 py-0.5 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20'>
+                      <span className='min-w-48 p-2 inline-flex flex-shrink-0 items-center rounded-full bg-green-50 py-0.5 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20'>
                         {candidate.email}
                       </span>
                       <a
-                        className='min-w-48 px-2 inline-flex flex-shrink-0 items-center rounded-full bg-blue-600 py-0.5 text-sm font-medium text-white  text-center content-center'
+                        className='min-w-48 px-2 inline-flex flex-shrink-0 items-center rounded-full bg-blue-600 py-0.5 text-sm font-medium text-white text-center content-center'
                         href={candidate.link}
                       >
                         LinkedIn

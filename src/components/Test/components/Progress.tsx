@@ -8,8 +8,8 @@ interface ProgressProps {
   handleOnSubmit: () => void
 }
 
-export default function Progress({ step, name, children, handleOnSubmit }: ProgressProps) {
-
+export default function Progress({ step, name, handleOnSubmit, children }: ProgressProps) {
+  // const
   return (
     <div className='w-full h-full flex flex-col justify-between'>
       {children}

@@ -9,5 +9,7 @@ export const mapCandidates = (candidates) => {
     role: 'Kandydat',
     avatar: el.name[0].toUpperCase() + el.surname[0].toUpperCase(),
     lastSeen: null,
+    testId: el.testId,
+    answers: el.answers,
   }))
 }
