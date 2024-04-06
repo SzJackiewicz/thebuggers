@@ -1,7 +1,6 @@
 import { classNames } from '@/utils/styleUtils'
 import { usePathname } from 'next/navigation'
 import { MenuItem } from '@/lib/api/getNavigationData'
-import * as HeroIcons from '@heroicons/react/24/outline'
 import { getIconComponent } from '@/utils/getIconComponents'
 
 type Props = {

@@ -2,10 +2,11 @@ import { getHomePageData } from '@/lib/api/getHomePageData'
 import { Home1 } from '@/components/Home/Home-1'
 import { Home2 } from '@/components/Home/Home-2'
 import { Home3 } from '@/components/Home/Home-3'
+import { cookies } from 'next/headers'
 
 export default async function Home() {
-  // TODO:
-  const locale = 'pl_PL'
+  const cookieStore = cookies()
+  const locale = cookieStore.get('lang')?.value
   const data = await getHomePageData(locale)
   const section = data?.page.sections[0]
   if (!section) return
