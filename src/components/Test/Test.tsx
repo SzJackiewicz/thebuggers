@@ -19,6 +19,7 @@ function classNames(...classes: any) {
 
 export default function Test({ data, id }: TestProps) {
   const [testValues, setTestValues] = useState(mapQuestions(data.questions))
+  const [date, setDate] = useState(null)
   const [candidateInfo, setCandidateInfo] = useState({
     name: '',
     surname: '',
@@ -39,11 +40,11 @@ export default function Test({ data, id }: TestProps) {
     <Suspense fallback={<>Loading...</>}>
       <Progress
         step={step as number}
-        {...{ name: data.name, handleOnSubmit }}
+        {...{ name: data.name, handleOnSubmit, date }}
       >
         {step === 0 && <TestInfoSection {...{ setStep }} />}
-        {step === 1 && <CandidateForm {...{ setStep, setCandidateInfo, candidateInfo }} />}
-        {step === 2 && <TestForm {...{ data: data.questions, setTestValues, testValues }} />}
+        {step === 1 && <CandidateForm {...{ setStep, setCandidateInfo, candidateInfo, setDate }} />}
+        {step === 2 && <TestForm {...{ data: data.questions, setTestValues, testValues, date }} />}
       </Progress>
     </Suspense>
   )
