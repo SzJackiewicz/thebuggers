@@ -59,7 +59,7 @@ export async function getHomePageData(locale: string = 'pl_PL'): Promise<Data | 
   try {
     const pageRequest = getPageRequest(false, locale)
     const data = await performRequest<Data>(pageRequest)
-    console.log(data)
+
     return data
   } catch (error) {
     console.error('Error fetching navigation data:', error)

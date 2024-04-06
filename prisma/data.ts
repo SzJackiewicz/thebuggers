@@ -32,10 +32,10 @@ export const usersData = [
     about: 'Benefit world simple term similar upon end really. Full view free bag message.',
   },
   {
-    userId: 'jamiehudson@gmail.com',
+    userId: 'simeon.graham@email.com',
     name: 'James',
     surname: 'Rodriguez',
-    email: 'jamiehudson@gmail.com',
+    email: 'simeon.graham@email.com',
     link: 'http://www.thomas.info/',
     about: 'Difference vote watch west reach or difficult.',
   },
