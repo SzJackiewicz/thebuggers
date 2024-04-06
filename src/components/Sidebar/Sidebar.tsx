@@ -13,9 +13,9 @@ const Sidebar = ({ logo, navigation }: Props) => {
   const logoUrl = logo.url || 'https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
 
   return (
-    <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
+    <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-56 lg:flex-col'>
       <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4'>
-        <div className='flex h-16 shrink-0 items-center py-4 mt-4'>
+        <div className='flex h-16 shrink-0 items-center py-4 mt-4 mx-auto'>
           <img
             className='h-10 w-auto'
             src={logoUrl}
