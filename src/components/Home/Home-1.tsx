@@ -14,19 +14,19 @@ export const Home1 = (feature: Feature[], section: Section) => {
             {feature.map((feature) => (
               <a
                 href={feature.slug}
-                className='h-120px'
+                className='h-[150px]'
               >
                 <div
                   key={feature.featureTitle}
-                  className='relative pl-16 shadow-md h-124x '
+                  className='relative pl-16 shadow-md h-[150px]'
                 >
-                  <dt className='text-base font-semibold leading-7 mb-6 items-center justify-center text-gray-800 pb:24'>
+                  <dt className='text-base font-semibold leading-7 mt-6 mb-6 me-6 items-center justify-center text-gray-800'>
                     <div className='absolute left-0 top-0 flex h-10 w-10 ml-4 items-center justify-center rounded-lg bg-indigo-600'>
                       {getIconComponent(feature.iconname, 'shrink-0')}
                     </div>
                     {feature.featureTitle}
                   </dt>
-                  <dd className='mt-2 text-base leading-7 text-gray-600'>{feature.featureDescription}</dd>
+                  <dd className='mt-2 text-base text-gray-600 me-6 '>{feature.featureDescription}</dd>
                 </div>
               </a>
             ))}
