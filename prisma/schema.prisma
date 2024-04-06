@@ -17,6 +17,7 @@ model User {
   about   String   @db.VarChar(256)
   testId  String   @db.VarChar(256)
   answers Answer[]
+  moduleDone ModuleDone[]
 }
 
 model Answer {
@@ -25,4 +26,11 @@ model Answer {
   value  String @db.VarChar(256)
   userId Int
   user   User   @relation(fields: [userId], references: [id])
+}
+
+model ModuleDone {
+  id        Int    @id @default(autoincrement())
+  moduleId  String @db.VarChar(256)
+  userId    Int
+  user      User   @relation(fields: [userId], references: [id])
 }

@@ -1,15 +1,19 @@
+'use server'
+
 import ConfirmButton from '@/components/ConfirmButton/ConfirmButton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { tabsGroup } from '@/constants/mocks'
 import { getGroups } from '@/lib/api/getGroups'
-import React from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Devs } from '@/content/Devs'
+import React from 'react'
+import { getModuleDone } from '@/server/getModuleDone'
 
 export default async function Frontend({ params: { slug } }: { params: { slug: string } }) {
   const getGroupData = await getGroups()
 
-  const module = getGroupData.filter((item) => item.path.href === slug).flatMap((item) => item.module)
+  const module =  getGroupData.filter((item) => item.path.href === slug)
+  .flatMap((item) => item.module)
+
 
   const tabs = module.map((tab) => (
     <TabsTrigger
@@ -22,13 +26,17 @@ export default async function Frontend({ params: { slug } }: { params: { slug: s
 
   const tabsContent = module.map((tab) => {
     return (
-      <TabsContent
-        key={tab.id}
-        value={tab.modulecontent}
-        className='prose max-w-none mx-8'
-      >
-        {tab.modulename === 'Devs4Devs' ? <Devs /> : <MDXRemote source={tab.modulecontent} />}
-      </TabsContent>
+      <>
+        <TabsContent
+          key={tab.id}
+          value={tab.modulecontent}
+          className='prose max-w-none mx-8'
+        >
+          {tab.modulename === 'Devs4Devs' ? <Devs /> :  <MDXRemote source={tab.modulecontent} />}
+
+        <ConfirmButton tabId={tab.id} getModuleDone={getModuleDone}/>
+        </TabsContent>
+      </>
     )
   })
 
@@ -42,7 +50,7 @@ export default async function Frontend({ params: { slug } }: { params: { slug: s
       >
         <TabsList className='flex w-fit justify-between py-7 px-4 gap-8'>{tabs}</TabsList>
         {tabsContent}
-        <ConfirmButton />
+
       </Tabs>
     </div>
   )

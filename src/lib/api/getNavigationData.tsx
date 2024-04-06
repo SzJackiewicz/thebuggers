@@ -1,6 +1,5 @@
 import { performRequest, PerformRequestParams } from '@/lib/datocms'
 import * as HeroIcons from '@heroicons/react/24/outline'
-import { useStore } from '@/hooks/useStore'
 
 const PAGE_CONTENT_QUERY = `
 query GetMenu ($locale: SiteLocale) {
