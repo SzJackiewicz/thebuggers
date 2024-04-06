@@ -9,8 +9,6 @@ import { countCorrect } from './helpers/countCorrect'
 export default function Candidates({ candidates, tests }: { candidates: any; tests: TestWithAnswer[] }) {
   const [open, setOpen] = useState<string>('')
   const [people, setPeople] = useState(mapCandidates(candidates))
-
-  console.log('tests', { tests, people })
   return (
     <ul
       role='list'

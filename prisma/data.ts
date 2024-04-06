@@ -1,5 +1,3 @@
-import test from 'node:test'
-
 export const usersData = [
   {
     userId: 'nporter@warren.com',
