@@ -7,6 +7,7 @@ import { TestData } from '@/lib/api/getTestById'
 import TestForm from './components/TestForm'
 import { mapQuestions } from './helpers/mapQuestionsAnswers'
 import { createUser } from '@/server/createUser'
+import ThankYouPage from '@/components/Test/components/ThankYouPage'
 
 interface TestProps {
   id: string
@@ -34,6 +35,7 @@ export default function Test({ data, id }: TestProps) {
       ...candidateInfo,
       answers: testValues,
     })
+    setStep(step+1)
   }
 
   return (
@@ -45,6 +47,7 @@ export default function Test({ data, id }: TestProps) {
         {step === 0 && <TestInfoSection {...{ setStep }} />}
         {step === 1 && <CandidateForm {...{ setStep, setCandidateInfo, candidateInfo, setDate }} />}
         {step === 2 && <TestForm {...{ data: data.questions, setTestValues, testValues, date }} />}
+        {step === 3 && <ThankYouPage />}
       </Progress>
     </Suspense>
   )

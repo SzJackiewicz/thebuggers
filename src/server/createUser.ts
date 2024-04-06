@@ -14,6 +14,17 @@ export async function createUser(data) {
   try {
     const answers = mapObjectToArray(data.answers)
 
+    const user = await prisma.user.findUnique({
+      where: {
+        userId: data.email
+      }
+    });
+
+    if (user) {
+      console.error('Użytkownik o podanym userId został znaleziony.');
+      return;
+    }
+
     await prisma.user.create({
       data: {
         userId: data.email,

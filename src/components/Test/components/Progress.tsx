@@ -10,6 +10,7 @@ interface ProgressProps {
 }
 
 export default function Progress({ step, name, handleOnSubmit, children, date }: ProgressProps) {
+  const bar = step === 0 ? 5 : step * 33
   return (
     <div className='w-full h-full flex flex-col justify-between'>
       {children}
@@ -23,7 +24,7 @@ export default function Progress({ step, name, handleOnSubmit, children, date }:
           <div className='overflow-hidden rounded-full bg-gray-200'>
             <div
               className='h-2 rounded-full bg-indigo-600'
-              style={{ width: '37.5%' }}
+              style={{ width: bar + '%' }}
             />
           </div>
           <div className='mt-6 hidden grid-cols-4 text-sm font-medium text-gray-600 sm:grid w-full'>

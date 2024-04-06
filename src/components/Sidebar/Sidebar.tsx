@@ -1,4 +1,3 @@
-import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { NavigationLinks } from '..'
 import React from 'react'
 import { Logo } from '../../lib/api/getSettings'
@@ -29,18 +28,6 @@ const Sidebar = ({ logo, navigation }: Props) => {
           >
             <li>
               <NavigationLinks navigation={navigation} />
-            </li>
-            <li className='mt-auto'>
-              <a
-                href='/admin'
-                className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white'
-              >
-                <Cog6ToothIcon
-                  className='h-6 w-6 shrink-0'
-                  aria-hidden='true'
-                />
-                Admin
-              </a>
             </li>
           </ul>
         </nav>
