@@ -1,14 +1,14 @@
 'use client'
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import Countdown from 'react-countdown'
 
 interface ProgressProps {
   step: number
   name: string
   children: React.ReactNode
+  handleOnSubmit: () => void
 }
 
-export default function Progress({ step, name, children }: ProgressProps) {
+export default function Progress({ step, name, handleOnSubmit, children }: ProgressProps) {
   // const
   return (
     <div className='w-full h-full flex flex-col justify-between'>
@@ -43,6 +43,7 @@ export default function Progress({ step, name, children }: ProgressProps) {
                 <div />
                 <div className='flex flex-row justify-end gap-6'>
                   <button
+                    onClick={handleOnSubmit}
                     type='button'
                     className='max-w-32 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                   >

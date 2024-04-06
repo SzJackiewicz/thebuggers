@@ -1,13 +1,12 @@
 'use client'
-import { steps } from '@/utils/testSteps'
-import { CheckIcon } from '@heroicons/react/24/outline'
 import { Suspense, useState } from 'react'
 import Progress from './components/Progress'
 import CandidateForm from './components/CandidateForm'
 import TestInfoSection from './components/TestInfoSection'
-import { Question, TestData, getTestById } from '@/lib/api/getTestById'
+import { TestData } from '@/lib/api/getTestById'
 import TestForm from './components/TestForm'
 import { mapQuestions } from './helpers/mapQuestionsAnswers'
+import { createUser } from '@/server/createUser'
 
 interface TestProps {
   id: string
@@ -29,14 +28,18 @@ export default function Test({ data, id }: TestProps) {
     testId: id,
   })
   const [step, setStep] = useState<number>(0)
-
-  console.log({ ...candidateInfo, answers: testValues })
+  const handleOnSubmit = async () => {
+    await createUser({
+      ...candidateInfo,
+      answers: testValues,
+    })
+  }
 
   return (
     <Suspense fallback={<>Loading...</>}>
       <Progress
         step={step as number}
-        {...{ name: data.name }}
+        {...{ name: data.name, handleOnSubmit }}
       >
         {step === 0 && <TestInfoSection {...{ setStep }} />}
         {step === 1 && <CandidateForm {...{ setStep, setCandidateInfo, candidateInfo }} />}
