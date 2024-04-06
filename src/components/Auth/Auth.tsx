@@ -1,16 +1,19 @@
 'use client'
 
 import navigate from '@/app/actions'
+import { userGroupName } from '@/constants/constants'
 import useAuth from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Auth() {
   const { signIn, mock } = useAuth()
+  const [user, setUser] = useState(userGroupName.HR)
   const router = useRouter()
 
   const handleSignIn = async () => {
     try {
-      await signIn(mock.dev)
+      await signIn(mock[user])
 
       navigate('/')
     } catch (err) {
@@ -38,16 +41,18 @@ export default function Auth() {
               Login
             </label>
             <div className='mt-2'>
-              <input
-                value='admin'
-                id='email'
-                name='email'
-                type='email'
-                autoComplete='email'
-                required
-                readOnly
-                className='px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-              />
+              <select
+                onChange={(e) => setUser(e.target.value)}
+                id='user'
+                name='user'
+                className='mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                defaultValue={userGroupName.HR}
+              >
+                <option>{userGroupName.UnAssigned}</option>
+                <option>{userGroupName.Manager}</option>
+                <option>{userGroupName.HR}</option>
+                <option>{userGroupName.Employee}</option>
+              </select>
             </div>
           </div>
 

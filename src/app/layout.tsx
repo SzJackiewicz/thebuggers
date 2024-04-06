@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import { getNavigationData } from '@/lib/api/getNavigationData'
@@ -20,11 +21,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = cookies()
+  const cookiesString = cookieStore.get('userData')?.value
   const settings = await getSettings()
   const faviconUrl = settings.favicon.url || '/favicon.ico'
 
   // TODO: przerobienie na cookie
-  const navigation = await getNavigationData(userGroupName.HR, 'pl_PL')
+  const navigation = await getNavigationData((cookiesString && JSON.parse(cookiesString)?.departmentName) || userGroupName.HR, 'pl_PL')
 
   return (
     <html

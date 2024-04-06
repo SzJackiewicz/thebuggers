@@ -21,6 +21,15 @@ const devUser: User = {
   departmentName: 'Employee',
 }
 
+const manUser: User = {
+  id: '464ba8b4-1c57-4262-b104-3b936bee592b',
+  fullName: 'Braylon Griffin',
+  age: 31,
+  email: 'braylon.griffin@email.com',
+  departmentId: '32',
+  departmentName: 'Manager',
+}
+
 export default function useAuth() {
   const { set, remove } = useCookie()
   const { dispatch } = useStore()
@@ -44,8 +53,9 @@ export default function useAuth() {
 
   return {
     mock: {
-      hr: hrUser,
-      dev: devUser,
+      HR: hrUser,
+      Employee: devUser,
+      Manager: manUser,
     },
     signOut,
     signIn,

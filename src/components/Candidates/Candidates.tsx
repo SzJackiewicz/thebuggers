@@ -10,7 +10,6 @@ export default function Candidates({ candidates, tests }: { candidates: any; tes
   const [open, setOpen] = useState<string>('')
   const [people, setPeople] = useState(mapCandidates(candidates))
 
-  console.log('tests', { tests, people })
   return (
     <ul
       role='list'

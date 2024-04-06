@@ -12,7 +12,6 @@ export default async function Document() {
   const documents = data?.allDocuments
   if (!documents) return
 
-  console.log(documents)
   return (
     <div>
       <h2 className='text-sm font-medium text-gray-500'>Documents</h2>

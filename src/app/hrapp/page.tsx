@@ -5,7 +5,6 @@ import { getUsers } from '@/server/getUsers'
 export default async function HrApp() {
   const users = await getUsers()
   const tests = await getAllTests()
-  console.log({ users })
   return (
     <div className='p-6'>
       <Candidates {...{ candidates: users, tests: tests! }} />
