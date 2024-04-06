@@ -1,5 +1,3 @@
-import { link } from 'fs'
-
 export const mapCandidates = (candidates) => {
   return candidates.map((el) => ({
     id: el.id,
@@ -7,7 +5,7 @@ export const mapCandidates = (candidates) => {
     email: el.email,
     link: el.link,
     role: 'Kandydat',
-    avatar: el.name[0].toUpperCase() + el.surname[0].toUpperCase(),
+    avatar: el?.name[0]?.toUpperCase() + el?.surname[0]?.toUpperCase(),
     lastSeen: null,
     testId: el.testId,
     answers: el.answers,
