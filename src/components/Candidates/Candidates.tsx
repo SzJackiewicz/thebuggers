@@ -4,12 +4,13 @@ import { mapCandidates } from './helpers/mapCandidates'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import Modal from '../Modal/Modal'
 import { TestWithAnswer } from '@/lib/api/getAllTests'
+import { countCorrect } from './helpers/countCorrect'
 
 export default function Candidates({ candidates, tests }: { candidates: any; tests: TestWithAnswer[] }) {
   const [open, setOpen] = useState<string>('')
   const [people, setPeople] = useState(mapCandidates(candidates))
 
-  console.log('tests', { tests, candidates })
+  console.log('tests', { tests, people })
   return (
     <ul
       role='list'
@@ -41,7 +42,7 @@ export default function Candidates({ candidates, tests }: { candidates: any; tes
                   <div className='flex-none rounded-full bg-emerald-500/20 p-1'>
                     <div className='h-1.5 w-1.5 rounded-full bg-emerald-500' />
                   </div>
-                  <p className='text-xs leading-5 text-gray-500'>{tests.find(({ id }) => id === person.testId)}</p>
+                  <p className='text-xs leading-5 text-gray-500'>{countCorrect(person, tests)}</p>
                 </div>
               )}
             </div>
